@@ -20,6 +20,6 @@ class UserSeeder extends Seeder
             'apellido_materno' => 'Ramirez',
             'email' => 'bernardo.martinez@mustango.com.mx',
             'password' => bcrypt('Ner52do10ca'),
-        ]);
+        ])->assignRole('Administrador');
     }
 }

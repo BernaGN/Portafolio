@@ -13,6 +13,13 @@ use Illuminate\Http\Request;
  */
 class HabilidadController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('can:habilidades.index')->only('index');
+        $this->middleware('can:habilidades.store')->only('create', 'store');
+        $this->middleware('can:habilidades.update')->only('edit', 'update');
+        $this->middleware('can:habilidades.destroy')->only('destroy');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -47,7 +54,7 @@ class HabilidadController extends Controller
     {
         Habilidad::create($request->all());
         return redirect()->route('habilidades.index')
-            ->with('success', 'agregado');
+            ->with('success', 'El registro fue agregado con exito.');
     }
 
     /**

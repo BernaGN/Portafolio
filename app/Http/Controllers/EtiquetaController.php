@@ -11,6 +11,13 @@ use Illuminate\Http\Request;
  */
 class EtiquetaController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('can:etiquetas.index')->only('index');
+        $this->middleware('can:etiquetas.store')->only('create', 'store');
+        $this->middleware('can:etiquetas.update')->only('edit', 'update');
+        $this->middleware('can:etiquetas.destroy')->only('destroy');
+    }
     /**
      * Display a listing of the resource.
      *

@@ -1,4 +1,4 @@
-<li class="nav-item {{ open('expedientes') }} {{ open('estimaciones') }}{{ open('obras-extras') }}">
+<li class="nav-item {{ open('proyectos') }}">
     <a href="#" class="nav-link">
         <i class="nav-icon fas fa-edit"></i>
         <p>

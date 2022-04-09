@@ -5,6 +5,7 @@
     <section class="content container-fluid">
         <div class="">
             <div class="col-md-12">
+                {{ Breadcrumbs::render('habilidad.update', $habilidad) }}
 
                 @includeif('partials.errors')
 
