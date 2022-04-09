@@ -45,7 +45,7 @@ class EtiquetaController extends Controller
     {
         Etiqueta::create($request->except('_token'));
         return redirect()->route('etiquetas.index')
-            ->with('success', 'Etiqueta created successfully.');
+            ->with('success', 'El registro fue agregado con exito.');
     }
 
     /**
@@ -85,7 +85,7 @@ class EtiquetaController extends Controller
     {
         $etiqueta->update($request->all());
         return redirect()->route('etiquetas.index')
-            ->with('success', 'Etiqueta updated successfully');
+            ->with('success', 'El registro fue modificado con exito.');
     }
 
     /**
@@ -96,6 +96,6 @@ class EtiquetaController extends Controller
     public function destroy(Etiqueta $etiqueta)
     {
         $etiqueta->delete();
-        return back()->with('success', 'Etiqueta deleted successfully');
+        return back()->with('success', 'El registro fue eliminado con exito.');
     }
 }

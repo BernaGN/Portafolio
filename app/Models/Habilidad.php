@@ -14,6 +14,8 @@ class Habilidad extends Model implements AuditableContracts
 
     protected $table = 'habilidades';
 
+    protected $perPage = 10;
+
     protected $fillable = ['nombre'];
 
     public function proyectos()

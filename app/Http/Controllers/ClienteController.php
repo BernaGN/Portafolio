@@ -46,7 +46,7 @@ class ClienteController extends Controller
     {
         Cliente::create($request->all());
         return redirect()->route('clientes.index')
-            ->with('success', 'Cliente created successfully.');
+            ->with('success', 'El registro fue agregado con exito.');
     }
 
     /**
@@ -86,7 +86,7 @@ class ClienteController extends Controller
     {
         $cliente->update($request->all());
         return redirect()->route('clientes.index')
-            ->with('success', 'Cliente updated successfully');
+            ->with('success', 'El registro fue modificado con exito.');
     }
 
     /**
@@ -97,6 +97,6 @@ class ClienteController extends Controller
     public function destroy(Cliente $cliente)
     {
         $cliente->delete();
-        return back()->with('success', 'Cliente deleted successfully');
+        return back()->with('success', 'El registro fue eliminado con exito.');
     }
 }

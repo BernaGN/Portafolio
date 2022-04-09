@@ -10,33 +10,34 @@
                         <div style="display: flex; justify-content: space-between; align-items: center;">
 
                             <span id="card_title">
-                                {{ __('Etiqueta') }}
+                                {{ __('Habilidad') }}
                             </span>
 
                             <div class="float-right">
-                                <a href="{{ route('etiquetas.create') }}" class="btn btn-primary btn-sm float-right"
+                                <a href="{{ route('habilidades.create') }}" class="btn btn-primary btn-sm float-right"
                                     data-placement="left">
                                     Agregar
                                 </a>
                             </div>
                         </div>
                     </div>
-
                     <div class="card-body">
                         <table class="table table-striped table-hover">
                             <thead class="thead">
                                 <tr>
                                     <th>No</th>
 
+                                    <th>Nombre</th>
 
                                     <th></th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($etiquetas as $etiqueta)
+                                @foreach ($habilidades as $habilidad)
                                     <tr>
-                                        <td>{{ $etiqueta->id }}</td>
+                                        <td>{{ $habilidad->id }}</td>
 
+                                        <td>{{ $habilidad->nombre }}</td>
 
                                         <td>
                                             <div class="dropdown">
@@ -46,21 +47,18 @@
                                                     Opciones
                                                 </button>
                                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                    <form action="{{ route('etiquetas.destroy', $etiqueta->id) }}"
+                                                    <form action="{{ route('habilidades.destroy', $habilidad->id) }}"
                                                         method="POST">
                                                         <a class="dropdown-item"
-                                                            href="{{ route('etiquetas.show', $etiqueta->id) }}">
-                                                            <i class="fa fa-fw fa-eye"></i> Ver
-                                                        </a>
+                                                            href="{{ route('habilidades.show', $habilidad->id) }}"><i
+                                                                class="fa fa-fw fa-eye"></i> Ver</a>
                                                         <a class="dropdown-item"
-                                                            href="{{ route('etiquetas.edit', $etiqueta->id) }}">
-                                                            <i class="fa fa-fw fa-edit"></i> Editar
-                                                        </a>
+                                                            href="{{ route('habilidades.edit', $habilidad->id) }}"><i
+                                                                class="fa fa-fw fa-edit"></i> Editar</a>
                                                         @csrf
                                                         @method('DELETE')
-                                                        <button type="submit" class="dropdown-item">
-                                                            <i class="fa fa-fw fa-trash"></i> Eliminar
-                                                        </button>
+                                                        <button type="submit" class="dropdown-item"><i
+                                                                class="fa fa-fw fa-trash"></i> Eliminar</button>
                                                     </form>
                                                 </div>
                                             </div>
@@ -71,7 +69,7 @@
                         </table>
                     </div>
                 </div>
-                {!! $etiquetas->links() !!}
+                {!! $habilidades->links() !!}
             </div>
         </div>
     </div>

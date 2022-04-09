@@ -2,14 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Categoria;
+use App\Http\Requests\HabilidadRequest;
+use App\Models\Habilidad;
+use App\Models\Habilidade;
 use Illuminate\Http\Request;
 
 /**
- * Class CategoriaController
+ * Class HabilidadeController
  * @package App\Http\Controllers
  */
-class CategoriaController extends Controller
+class HabilidadController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,8 +20,8 @@ class CategoriaController extends Controller
      */
     public function index()
     {
-        return view('Catalogos.categoria.index', [
-            'categorias' => Categoria::paginate(),
+        return view('Catalogos.habilidad.index', [
+            'habilidades' => Habilidad::paginate(),
         ]);
     }
 
@@ -30,8 +32,8 @@ class CategoriaController extends Controller
      */
     public function create()
     {
-        return view('Catalogos.categoria.create', [
-            'categoria' => new Categoria(),
+        return view('Catalogos.habilidad.create', [
+            'habilidad' => new Habilidad(),
         ]);
     }
 
@@ -41,11 +43,11 @@ class CategoriaController extends Controller
      * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(HabilidadRequest $request)
     {
-        Categoria::create($request->except('_token'));
-        return redirect()->route('categorias.index')
-            ->with('success', 'El registro fue agregado con exito.');
+        Habilidad::create($request->all());
+        return redirect()->route('habilidades.index')
+            ->with('success', 'agregado');
     }
 
     /**
@@ -54,10 +56,10 @@ class CategoriaController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Categoria $categoria)
+    public function show(Habilidad $habilidade)
     {
-        return view('Catalogos.categoria.show', [
-            'categoria' => $categoria,
+        return view('Catalogos.habilidad.show', [
+            'habilidad' => $habilidade,
         ]);
     }
 
@@ -67,10 +69,10 @@ class CategoriaController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Categoria $categoria)
+    public function edit(Habilidad $habilidade)
     {
-        return view('Catalogos.categoria.edit', [
-            'categoria' => $categoria,
+        return view('Catalogos.habilidad.edit', [
+            'habilidad' => $habilidade,
         ]);
     }
 
@@ -78,13 +80,13 @@ class CategoriaController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request $request
-     * @param  Categoria $categoria
+     * @param  Habilidade $habilidade
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Categoria $categoria)
+    public function update(HabilidadRequest $request, Habilidad $habilidade)
     {
-        $categoria->update($request->except('_token'));
-        return redirect()->route('categorias.index')
+        $habilidade->update($request->all());
+        return redirect()->route('habilidades.index')
             ->with('success', 'El registro fue modificado con exito.');
     }
 
@@ -93,9 +95,9 @@ class CategoriaController extends Controller
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Exception
      */
-    public function destroy(Categoria $categoria)
+    public function destroy(Habilidad $habilidade)
     {
-        $categoria->delete();
+        $habilidade->delete();
         return back()->with('success', 'El registro fue eliminado con exito.');
     }
 }
