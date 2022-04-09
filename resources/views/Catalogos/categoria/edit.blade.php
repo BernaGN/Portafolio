@@ -1,10 +1,7 @@
-@extends('layouts.app')
+@extends('layouts.plantilla')
 
-@section('template_title')
-    Update Categoria
-@endsection
 
-@section('content')
+@section('contenido')
     <section class="content container-fluid">
         <div class="">
             <div class="col-md-12">

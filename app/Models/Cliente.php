@@ -14,6 +14,8 @@ class Cliente extends Model implements AuditableContracts, HasMedia
 {
     use HasFactory, SoftDeletes, Auditable, InteractsWithMedia;
 
+    protected $perPage = 10;
+
     protected $fillable = ['nombre'];
 
     public function proyectos()

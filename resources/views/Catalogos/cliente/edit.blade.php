@@ -1,23 +1,24 @@
-@extends('layouts.app')
+@extends('layouts.plantilla')
 
 
-@section('content')
+@section('contenido')
     <section class="content container-fluid">
-        <div class="row">
+        <div class="">
             <div class="col-md-12">
 
                 @includeif('partials.errors')
 
                 <div class="card card-default">
                     <div class="card-header">
-                        <span class="card-title">Agregar Categoria</span>
+                        <span class="card-title">Editar Cliente</span>
                     </div>
                     <div class="card-body">
-                        <form method="POST" action="{{ route('categorias.store') }}" role="form"
+                        <form method="POST" action="{{ route('clientes.update', $cliente->id) }}" role="form"
                             enctype="multipart/form-data">
+                            {{ method_field('PATCH') }}
                             @csrf
 
-                            @include('Catalogos.categoria.form')
+                            @include('Catalogos.cliente.form')
 
                         </form>
                     </div>

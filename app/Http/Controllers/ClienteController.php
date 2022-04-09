@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Categoria;
+use App\Http\Requests\ClienteRequest;
+use App\Models\Cliente;
 use Illuminate\Http\Request;
 
 /**
- * Class CategoriaController
+ * Class ClienteController
  * @package App\Http\Controllers
  */
-class CategoriaController extends Controller
+class ClienteController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,8 +19,8 @@ class CategoriaController extends Controller
      */
     public function index()
     {
-        return view('Catalogos.categoria.index', [
-            'categorias' => Categoria::paginate(),
+        return view('Catalogos.cliente.index', [
+            'clientes' => Cliente::paginate(),
         ]);
     }
 
@@ -30,8 +31,8 @@ class CategoriaController extends Controller
      */
     public function create()
     {
-        return view('Catalogos.categoria.create', [
-            'categoria' => new Categoria(),
+        return view('Catalogos.cliente.create', [
+            'cliente' => new Cliente(),
         ]);
     }
 
@@ -41,11 +42,11 @@ class CategoriaController extends Controller
      * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ClienteRequest $request)
     {
-        Categoria::create($request->except('_token'));
-        return redirect()->route('categorias.index')
-            ->with('success', 'Categoria created successfully.');
+        Cliente::create($request->all());
+        return redirect()->route('clientes.index')
+            ->with('success', 'Cliente created successfully.');
     }
 
     /**
@@ -54,10 +55,10 @@ class CategoriaController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Categoria $categoria)
+    public function show(Cliente $cliente)
     {
-        return view('Catalogos.categoria.show', [
-            'categoria' => $categoria,
+        return view('Catalogos.cliente.show', [
+            'cliente' => $cliente,
         ]);
     }
 
@@ -67,10 +68,10 @@ class CategoriaController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Categoria $categoria)
+    public function edit(Cliente $cliente)
     {
-        return view('Catalogos.categoria.edit', [
-            'categoria' => $categoria,
+        return view('Catalogos.cliente.edit', [
+            'cliente' => $cliente,
         ]);
     }
 
@@ -78,14 +79,14 @@ class CategoriaController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request $request
-     * @param  Categoria $categoria
+     * @param  Cliente $cliente
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Categoria $categoria)
+    public function update(ClienteRequest $request, Cliente $cliente)
     {
-        $categoria->update($request->except('_token'));
-        return redirect()->route('categorias.index')
-            ->with('success', 'Categoria updated successfully');
+        $cliente->update($request->all());
+        return redirect()->route('clientes.index')
+            ->with('success', 'Cliente updated successfully');
     }
 
     /**
@@ -93,9 +94,9 @@ class CategoriaController extends Controller
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Exception
      */
-    public function destroy(Categoria $categoria)
+    public function destroy(Cliente $cliente)
     {
-        $categoria->delete();
-        return back()->with('success', 'Categoria deleted successfully');
+        $cliente->delete();
+        return back()->with('success', 'Cliente deleted successfully');
     }
 }

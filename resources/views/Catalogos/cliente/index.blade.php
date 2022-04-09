@@ -10,11 +10,11 @@
                         <div style="display: flex; justify-content: space-between; align-items: center;">
 
                             <span id="card_title">
-                                Categorias
+                                {{ __('Cliente') }}
                             </span>
 
                             <div class="float-right">
-                                <a href="{{ route('categorias.create') }}" class="btn btn-primary btn-sm float-right"
+                                <a href="{{ route('clientes.create') }}" class="btn btn-primary btn-sm float-right"
                                     data-placement="left">
                                     Agregar
                                 </a>
@@ -33,15 +33,17 @@
                                 <tr>
                                     <th>No</th>
 
+                                    <th>Nombre</th>
 
                                     <th></th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($categorias as $categoria)
+                                @foreach ($clientes as $cliente)
                                     <tr>
-                                        <td>{{ $categoria->id }}</td>
+                                        <td>{{ $cliente->id }}</td>
 
+                                        <td>{{ $cliente->nombre }}</td>
 
                                         <td>
                                             <div class="dropdown">
@@ -51,13 +53,13 @@
                                                     Opciones
                                                 </button>
                                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                    <form action="{{ route('categorias.destroy', $categoria->id) }}"
+                                                    <form action="{{ route('clientes.destroy', $cliente->id) }}"
                                                         method="POST">
                                                         <a class="dropdown-item"
-                                                            href="{{ route('categorias.show', $categoria->id) }}"><i
+                                                            href="{{ route('clientes.show', $cliente->id) }}"><i
                                                                 class="fa fa-fw fa-eye"></i> Ver</a>
                                                         <a class="dropdown-item"
-                                                            href="{{ route('categorias.edit', $categoria->id) }}"><i
+                                                            href="{{ route('clientes.edit', $cliente->id) }}"><i
                                                                 class="fa fa-fw fa-edit"></i> Editar</a>
                                                         @csrf
                                                         @method('DELETE')
@@ -73,7 +75,7 @@
                         </table>
                     </div>
                 </div>
-                {!! $categorias->links() !!}
+                {!! $clientes->links() !!}
             </div>
         </div>
     </div>

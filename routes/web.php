@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CategoriaController;
+use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PrincipalController;
 use Illuminate\Support\Facades\Route;
@@ -25,4 +26,5 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/home', HomeController::class)->name('home');
 
     Route::resource('/categorias', CategoriaController::class);
+    Route::resource('/clientes', ClienteController::class);
 });

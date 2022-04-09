@@ -1,7 +1,7 @@
-@extends('layouts.app')
+@extends('layouts.plantilla')
 
 
-@section('content')
+@section('contenido')
     <section class="content container-fluid">
         <div class="row">
             <div class="col-md-12">
@@ -10,14 +10,14 @@
 
                 <div class="card card-default">
                     <div class="card-header">
-                        <span class="card-title">Agregar Categoria</span>
+                        <span class="card-title">Agregar Cliente</span>
                     </div>
                     <div class="card-body">
-                        <form method="POST" action="{{ route('categorias.store') }}" role="form"
+                        <form method="POST" action="{{ route('clientes.store') }}" role="form"
                             enctype="multipart/form-data">
                             @csrf
 
-                            @include('Catalogos.categoria.form')
+                            @include('Catalogos.cliente.form')
 
                         </form>
                     </div>
