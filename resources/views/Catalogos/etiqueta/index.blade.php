@@ -10,11 +10,11 @@
                         <div style="display: flex; justify-content: space-between; align-items: center;">
 
                             <span id="card_title">
-                                {{ __('Cliente') }}
+                                {{ __('Etiqueta') }}
                             </span>
 
                             <div class="float-right">
-                                <a href="{{ route('clientes.create') }}" class="btn btn-primary btn-sm float-right"
+                                <a href="{{ route('etiquetas.create') }}" class="btn btn-primary btn-sm float-right"
                                     data-placement="left">
                                     Agregar
                                 </a>
@@ -33,17 +33,15 @@
                                 <tr>
                                     <th>No</th>
 
-                                    <th>Nombre</th>
 
                                     <th></th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($clientes as $cliente)
+                                @foreach ($etiquetas as $etiqueta)
                                     <tr>
-                                        <td>{{ $cliente->id }}</td>
+                                        <td>{{ $etiqueta->id }}</td>
 
-                                        <td>{{ $cliente->nombre }}</td>
 
                                         <td>
                                             <div class="dropdown">
@@ -53,14 +51,14 @@
                                                     Opciones
                                                 </button>
                                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                    <form action="{{ route('clientes.destroy', $cliente->id) }}"
+                                                    <form action="{{ route('etiquetas.destroy', $etiqueta->id) }}"
                                                         method="POST">
                                                         <a class="dropdown-item"
-                                                            href="{{ route('clientes.show', $cliente->id) }}">
+                                                            href="{{ route('etiquetas.show', $etiqueta->id) }}">
                                                             <i class="fa fa-fw fa-eye"></i> Ver
                                                         </a>
                                                         <a class="dropdown-item"
-                                                            href="{{ route('clientes.edit', $cliente->id) }}">
+                                                            href="{{ route('etiquetas.edit', $etiqueta->id) }}">
                                                             <i class="fa fa-fw fa-edit"></i> Editar
                                                         </a>
                                                         @csrf
@@ -78,7 +76,7 @@
                         </table>
                     </div>
                 </div>
-                {!! $clientes->links() !!}
+                {!! $etiquetas->links() !!}
             </div>
         </div>
     </div>

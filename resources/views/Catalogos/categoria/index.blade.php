@@ -54,15 +54,18 @@
                                                     <form action="{{ route('categorias.destroy', $categoria->id) }}"
                                                         method="POST">
                                                         <a class="dropdown-item"
-                                                            href="{{ route('categorias.show', $categoria->id) }}"><i
-                                                                class="fa fa-fw fa-eye"></i> Ver</a>
+                                                            href="{{ route('categorias.show', $categoria->id) }}">
+                                                            <i class="fa fa-fw fa-eye"></i> Ver
+                                                        </a>
                                                         <a class="dropdown-item"
-                                                            href="{{ route('categorias.edit', $categoria->id) }}"><i
-                                                                class="fa fa-fw fa-edit"></i> Editar</a>
+                                                            href="{{ route('categorias.edit', $categoria->id) }}">
+                                                            <i class="fa fa-fw fa-edit"></i> Editar
+                                                        </a>
                                                         @csrf
                                                         @method('DELETE')
-                                                        <button type="submit" class="dropdown-item"><i
-                                                                class="fa fa-fw fa-trash"></i> Eliminar</button>
+                                                        <button type="submit" class="dropdown-item">
+                                                            <i class="fa fa-fw fa-trash"></i> Eliminar
+                                                        </button>
                                                     </form>
                                                 </div>
                                             </div>

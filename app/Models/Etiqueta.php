@@ -12,6 +12,8 @@ class Etiqueta extends Model implements AuditableContracts
 {
     use HasFactory, SoftDeletes, Auditable;
 
+    protected $perPage = 10;
+
     public function informacion()
     {
         return $this->morphOne(Informacion::class, 'informable');

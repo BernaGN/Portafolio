@@ -1,4 +1,4 @@
-<li class="nav-item {{ open('clientes') }} {{ open('categorias') }} ">
+<li class="nav-item {{ open('clientes') }} {{ open('categorias') }} {{ open('etiquetas') }}">
     <a href="#" class="nav-link">
         <i class="nav-icon fas fa-table"></i>
         <p>
@@ -17,6 +17,12 @@
             <a href="{{ route('clientes.index') }}" class="nav-link {{ active('clientes') }}">
                 <i class="{{ selectedIcon('clientes') }} fa-circle nav-icon"></i>
                 <p>Clientes</p>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="{{ route('etiquetas.index') }}" class="nav-link {{ active('etiquetas') }}">
+                <i class="{{ selectedIcon('etiquetas') }} fa-circle nav-icon"></i>
+                <p>Etiquetas</p>
             </a>
         </li>
     </ul>
