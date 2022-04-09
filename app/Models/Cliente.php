@@ -14,11 +14,11 @@ class Cliente extends Model implements AuditableContracts, HasMedia
 {
     use HasFactory, SoftDeletes, Auditable, InteractsWithMedia;
 
-    protected $fillable = ['nombre', 'proyecto_id'];
+    protected $fillable = ['nombre'];
 
     public function proyectos()
     {
-        return $this->belongsToMany(Proyecto::class);
+        return $this->hasMany(Proyecto::class);
     }
 
 }

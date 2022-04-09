@@ -16,7 +16,6 @@ return new class extends Migration
         Schema::create('clientes', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('nombre');
-            $table->foreignId('proyecto_id')->constrained();
             $table->timestamps();
             $table->softDeletes();
         });

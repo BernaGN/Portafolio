@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
 class HomeController extends Controller
 {
     /**
@@ -17,11 +15,11 @@ class HomeController extends Controller
     }
 
     /**
-     * Show the application dashboard.
+     * Provision a new web server.
      *
-     * @return \Illuminate\Contracts\Support\Renderable
+     * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function __invoke()
     {
         return view('home');
     }

@@ -14,6 +14,8 @@ class Proyecto extends Model implements AuditableContracts, HasMedia
 {
     use HasFactory, SoftDeletes, Auditable, InteractsWithMedia;
 
+    protected $fillable = ['cliente_id'];
+
     public function informacion()
     {
         return $this->morphOne(Informacion::class, 'informable');
@@ -21,7 +23,7 @@ class Proyecto extends Model implements AuditableContracts, HasMedia
 
     public function cliente()
     {
-        return $this->hasMany(Cliente::class);
+        return $this->belongsTo(Cliente::class);
     }
 
     public function habilidades()
