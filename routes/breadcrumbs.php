@@ -95,12 +95,12 @@ Breadcrumbs::for('categoria.index', fn(BreadcrumbTrail $trail) => $trail
 );
 
 Breadcrumbs::for('categoria.store', fn(BreadcrumbTrail $trail) => $trail
-    ->parent('categorias.index')
+    ->parent('categoria.index')
     ->push('Agregar Categoria')
 );
 
 Breadcrumbs::for('categoria.show', fn(BreadcrumbTrail $trail, Categoria $categoria) => $trail
-    ->parent('categorias.index')
+    ->parent('categoria.index')
     ->push($categoria->id, route('categorias.show', $categoria))
 );
 

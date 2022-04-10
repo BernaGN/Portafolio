@@ -17,15 +17,32 @@
                     </div>
 
                     <div class="card-body">
-
+                        <div class="form-group">
+                            <strong>id:</strong>
+                            {{ $proyecto->id }}
+                        </div>
                         <div class="form-group">
                             <strong>Cliente Id:</strong>
                             {{ $proyecto->cliente->nombre }}
                         </div>
-
+                        <div class="form-group">
+                            <strong>Nombre:</strong>
+                            {{ $proyecto->informacion->nombre }}
+                        </div>
+                        <div class="form-group">
+                            <strong>Nombre:</strong>
+                            {{ $proyecto->informacion->descripcion }}
+                        </div>
+                        <div class="form-group">
+                            <strong>Fecha de creacion:</strong>
+                            {{ $proyecto->created_at }}
+                        </div>
+                        <div class="form-group">
+                            <strong>Fecha de modificacion:</strong>
+                            {{ $proyecto->updated_at }}
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
     </section>
 @endsection

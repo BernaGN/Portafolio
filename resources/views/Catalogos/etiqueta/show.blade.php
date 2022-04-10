@@ -17,8 +17,26 @@
                     </div>
 
                     <div class="card-body">
-
-
+                        <div class="form-group">
+                            <strong>id:</strong>
+                            {{ $etiqueta->id }}
+                        </div>
+                        <div class="form-group">
+                            <strong>Nombre:</strong>
+                            {{ $etiqueta->informacion->nombre }}
+                        </div>
+                        <div class="form-group">
+                            <strong>Nombre:</strong>
+                            {{ $etiqueta->informacion->descripcion }}
+                        </div>
+                        <div class="form-group">
+                            <strong>Fecha de creacion:</strong>
+                            {{ $etiqueta->created_at }}
+                        </div>
+                        <div class="form-group">
+                            <strong>Fecha de modificacion:</strong>
+                            {{ $etiqueta->updated_at }}
+                        </div>
                     </div>
                 </div>
             </div>

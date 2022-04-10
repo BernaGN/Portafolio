@@ -16,6 +16,8 @@ class Proyecto extends Model implements AuditableContracts, HasMedia
 
     protected $perPage = 10;
 
+    protected $with = ['informacion'];
+
     protected $fillable = ['cliente_id'];
 
     public function informacion()

@@ -5,7 +5,7 @@
     <section class="content container-fluid">
         <div class="row">
             <div class="col-md-12">
-                {{ Breadcrumbs::render('cliente.show', $categoria) }}
+                {{ Breadcrumbs::render('categoria.show', $categoria) }}
                 <div class="card">
                     <div class="card-header">
                         <div class="float-left">
@@ -17,8 +17,26 @@
                     </div>
 
                     <div class="card-body">
-
-
+                        <div class="form-group">
+                            <strong>id:</strong>
+                            {{ $categoria->id }}
+                        </div>
+                        <div class="form-group">
+                            <strong>Nombre:</strong>
+                            {{ $categoria->informacion->nombre }}
+                        </div>
+                        <div class="form-group">
+                            <strong>Nombre:</strong>
+                            {{ $categoria->informacion->descripcion }}
+                        </div>
+                        <div class="form-group">
+                            <strong>Fecha de creacion:</strong>
+                            {{ $categoria->created_at }}
+                        </div>
+                        <div class="form-group">
+                            <strong>Fecha de modificacion:</strong>
+                            {{ $categoria->updated_at }}
+                        </div>
                     </div>
                 </div>
             </div>

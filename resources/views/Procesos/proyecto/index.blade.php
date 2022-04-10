@@ -27,9 +27,9 @@
                             <thead class="thead">
                                 <tr>
                                     <th>No</th>
-
                                     <th>Cliente</th>
-
+                                    <th>Nombre</th>
+                                    <th>Descripcion</th>
                                     <th></th>
                                 </tr>
                             </thead>
@@ -37,9 +37,9 @@
                                 @foreach ($proyectos as $proyecto)
                                     <tr>
                                         <td>{{ $proyecto->id }}</td>
-
                                         <td>{{ $proyecto->cliente->nombre }}</td>
-
+                                        <td>{{ $proyecto->informacion->nombre }}</td>
+                                        <td>{{ $proyecto->informacion->descripcion }}</td>
                                         <td>
                                             <div class="dropdown">
                                                 <button class="btn btn-info dropdown-toggle" type="button"

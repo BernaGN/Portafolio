@@ -14,6 +14,8 @@ class Etiqueta extends Model implements AuditableContracts
 
     protected $perPage = 10;
 
+    protected $with = ['informacion'];
+
     public function informacion()
     {
         return $this->morphOne(Informacion::class, 'informable');

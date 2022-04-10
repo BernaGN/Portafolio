@@ -28,8 +28,8 @@
                             <thead class="thead">
                                 <tr>
                                     <th>No</th>
-
-
+                                    <th>Nombre</th>
+                                    <th>Descripcion</th>
                                     <th></th>
                                 </tr>
                             </thead>
@@ -37,8 +37,8 @@
                                 @foreach ($etiquetas as $etiqueta)
                                     <tr>
                                         <td>{{ $etiqueta->id }}</td>
-
-
+                                        <td>{{ $etiqueta->informacion->nombre }}</td>
+                                        <td>{{ $etiqueta->informacion->descripcion }}</td>
                                         <td>
                                             <div class="dropdown">
                                                 <button class="btn btn-sm btn-info dropdown-toggle" type="button"

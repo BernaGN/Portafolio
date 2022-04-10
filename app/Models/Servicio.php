@@ -12,6 +12,10 @@ class Servicio extends Model implements AuditableContracts
 {
     use HasFactory, SoftDeletes, Auditable;
 
+    protected $perPage = 10;
+
+    protected $with = ['informacion'];
+
     public function informacion()
     {
         return $this->morphOne(Informacion::class, 'informable');
