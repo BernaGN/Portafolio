@@ -3,8 +3,9 @@
 
 @section('contenido')
     <section class="content container-fluid">
-        <div class="">
+        <div class="row">
             <div class="col-md-12">
+                {{ Breadcrumbs::render('cliente.update', $categoria) }}
 
                 @includeif('partials.errors')
 

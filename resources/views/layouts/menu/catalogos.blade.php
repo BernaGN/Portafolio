@@ -25,6 +25,14 @@
                 </a>
             </li>
         @endcan
+        @can('categorias.index')
+            <li class="nav-item">
+                <a href="{{ route('categorias.index') }}" class="nav-link {{ active('categorias') }}">
+                    <i class="{{ selectedIcon('categorias') }} fa-circle nav-icon"></i>
+                    <p>Categorias</p>
+                </a>
+            </li>
+        @endcan
         @can('etiquetas.index')
             <li class="nav-item">
                 <a href="{{ route('etiquetas.index') }}" class="nav-link {{ active('etiquetas') }}">
@@ -38,6 +46,14 @@
                 <a href="{{ route('habilidades.index') }}" class="nav-link {{ active('habilidades') }}">
                     <i class="{{ selectedIcon('habilidades') }} fa-circle nav-icon"></i>
                     <p>Habilidades</p>
+                </a>
+            </li>
+        @endcan
+        @can('servicios.index')
+            <li class="nav-item">
+                <a href="{{ route('servicios.index') }}" class="nav-link {{ active('servicios') }}">
+                    <i class="{{ selectedIcon('servicios') }} fa-circle nav-icon"></i>
+                    <p>Servicios</p>
                 </a>
             </li>
         @endcan

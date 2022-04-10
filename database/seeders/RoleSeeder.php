@@ -148,6 +148,23 @@ class RoleSeeder extends Seeder
         ])->syncRoles([$admin]);
 
         Permission::create([
+            'name' => 'categorias.index',
+            'description' => 'Ver Categorias',
+        ])->syncRoles([$admin, $editor]);
+        Permission::create([
+            'name' => 'categorias.store',
+            'description' => 'Agregar Categorias',
+        ])->syncRoles([$admin]);
+        Permission::create([
+            'name' => 'categorias.update',
+            'description' => 'Editar Categorias',
+        ])->syncRoles([$admin]);
+        Permission::create([
+            'name' => 'categorias.destroy',
+            'description' => 'Eliminar Categorias',
+        ])->syncRoles([$admin]);
+
+        Permission::create([
             'name' => 'proyectos.index',
             'description' => 'Ver Proyectos',
         ])->syncRoles([$admin, $editor]);

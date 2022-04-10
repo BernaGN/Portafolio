@@ -5,17 +5,17 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-sm-12">
-                {{ Breadcrumbs::render('categoria.index') }}
+                {{ Breadcrumbs::render('servicio.index') }}
                 <div class="card">
                     <div class="card-header">
                         <div style="display: flex; justify-content: space-between; align-items: center;">
 
                             <span id="card_title">
-                                Categorias
+                                {{ __('Servicio') }}
                             </span>
 
                             <div class="float-right">
-                                <a href="{{ route('categorias.create') }}" class="btn btn-primary btn-sm float-right"
+                                <a href="{{ route('servicios.create') }}" class="btn btn-primary btn-sm float-right"
                                     data-placement="left">
                                     Agregar
                                 </a>
@@ -34,36 +34,35 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($categorias as $categoria)
+                                @foreach ($servicios as $servicio)
                                     <tr>
-                                        <td>{{ $categoria->id }}</td>
+                                        <td>{{ $servicio->id }}</td>
 
 
                                         <td>
                                             <div class="dropdown">
-                                                <button class="btn btn-sm btn-info dropdown-toggle" type="button"
-                                                    id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true"
+                                                <button class="btn btn-info dropdown-toggle" type="button"
+                                                    id="dropdownMenuButton1" data-bs-toggle="dropdown"
                                                     aria-expanded="false">
                                                     Opciones
                                                 </button>
-                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                    <form action="{{ route('categorias.destroy', $categoria->id) }}"
+                                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                                    <form action="{{ route('servicios.destroy', $servicio->id) }}"
                                                         method="POST">
                                                         <a class="dropdown-item"
-                                                            href="{{ route('categorias.show', $categoria->id) }}">
+                                                            href="{{ route('servicios.show', $servicio->id) }}">
                                                             <i class="fa fa-fw fa-eye"></i> Ver
                                                         </a>
                                                         <a class="dropdown-item"
-                                                            href="{{ route('categorias.edit', $categoria->id) }}">
+                                                            href="{{ route('servicios.edit', $servicio->id) }}">
                                                             <i class="fa fa-fw fa-edit"></i> Editar
                                                         </a>
                                                         @csrf
                                                         @method('DELETE')
-                                                        <button type="submit" class="dropdown-item">
-                                                            <i class="fa fa-fw fa-trash"></i> Eliminar
-                                                        </button>
+                                                        <button type="submit" class="dropdown-item"><i
+                                                                class="fa fa-fw fa-trash"></i> Eliminar</button>
                                                     </form>
-                                                </div>
+                                                </ul>
                                             </div>
                                         </td>
                                     </tr>
@@ -72,7 +71,7 @@
                         </table>
                     </div>
                 </div>
-                {!! $categorias->links() !!}
+                {!! $servicios->links() !!}
             </div>
         </div>
     </div>

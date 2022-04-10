@@ -7,9 +7,11 @@ use App\Models\Audit;
 
 // This import is also not required, and you could replace `BreadcrumbTrail $trail`
 //  with `$trail`. This is nice for IDE type checking and completion.
+use App\Models\Categoria;
 use App\Models\Cliente;
 use App\Models\Etiqueta;
 use App\Models\Habilidad;
+use App\Models\Servicio;
 use App\Models\User;
 use Diglactic\Breadcrumbs\Breadcrumbs;
 use Diglactic\Breadcrumbs\Generator as BreadcrumbTrail;
@@ -85,6 +87,27 @@ Breadcrumbs::for('permiso.update', fn(BreadcrumbTrail $trail, Permission $permis
     ->push($permiso->name, route('permisos.update', $permiso))
 );
 
+//Catalogos/Permisos
+Breadcrumbs::for('categoria.index', fn(BreadcrumbTrail $trail) => $trail
+    ->parent('catalogo')
+    ->push('Categorias', route('categorias.index'))
+);
+
+Breadcrumbs::for('categoria.store', fn(BreadcrumbTrail $trail) => $trail
+    ->parent('categorias.index')
+    ->push('Agregar Categoria')
+);
+
+Breadcrumbs::for('categoria.show', fn(BreadcrumbTrail $trail, Categoria $categoria) => $trail
+    ->parent('categorias.index')
+    ->push($categoria->id, route('categorias.show', $categoria))
+);
+
+Breadcrumbs::for('categoria.update', fn(BreadcrumbTrail $trail, Categoria $categoria) => $trail
+    ->parent('categoria.index')
+    ->push($categoria->name, route('categorias.update', $categoria))
+);
+
 //Catalogos/Cliente
 Breadcrumbs::for('cliente.index', fn(BreadcrumbTrail $trail) => $trail
     ->parent('catalogo')
@@ -134,7 +157,7 @@ Breadcrumbs::for('habilidad.index', fn(BreadcrumbTrail $trail) => $trail
 );
 
 Breadcrumbs::for('habilidad.store', fn(BreadcrumbTrail $trail) => $trail
-    ->parent('catalogo')
+    ->parent('habilidad.index')
     ->push('Agregar Habilidad')
 );
 
@@ -146,6 +169,27 @@ Breadcrumbs::for('habilidad.show', fn(BreadcrumbTrail $trail, Habilidad $habilid
 Breadcrumbs::for('habilidad.update', fn(BreadcrumbTrail $trail, Habilidad $habilidade) => $trail
     ->parent('habilidad.index')
     ->push($habilidade->nombre, route('etiquetas.update', $habilidade))
+);
+
+//Catalogos/Servicios
+Breadcrumbs::for('servicio.index', fn(BreadcrumbTrail $trail) => $trail
+    ->parent('catalogo')
+    ->push('Servicio', route('servicios.index'))
+);
+
+Breadcrumbs::for('servicio.store', fn(BreadcrumbTrail $trail) => $trail
+    ->parent('servicio.index')
+    ->push('Agregar Servicio')
+);
+
+Breadcrumbs::for('servicio.show', fn(BreadcrumbTrail $trail, Servicio $servicio) => $trail
+    ->parent('servicio.index')
+    ->push($servicio->id, route('servicios.show', $servicio))
+);
+
+Breadcrumbs::for('servicio.update', fn(BreadcrumbTrail $trail, Servicio $servicio) => $trail
+    ->parent('servicio.index')
+    ->push($servicio->id, route('servicios.update', $servicio))
 );
 
 //Procesos
