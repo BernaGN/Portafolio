@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Cliente;
 use App\Models\Proyecto;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 /**
  * Class ProyectoController
@@ -17,10 +18,18 @@ class ProyectoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         return view('Procesos.proyecto.index', [
-            'proyectos' => Proyecto::with('cliente:id,nombre')->paginate(),
+            'proyectos' => Proyecto::with('cliente:id,nombre')
+                ->when(empty($request->buscar) == false,
+                    fn($query) => $query->whereRelation('informacion', 'nombre', 'Like', '%' . $request->buscar . '%')
+                        ->orWhereRelation('cliente', 'nombre', 'Like', '%' . $request->buscar . '%')
+                )->when($request->activo == 1, fn($query) => $query->onlyTrashed())
+                ->when($request->activo == null || $request->activo == 0, fn($query) => $query->withTrashed())
+                ->paginate(),
+            'buscar' => $request->buscar,
+            'activo' => $request->activo,
         ]);
     }
 
@@ -45,7 +54,12 @@ class ProyectoController extends Controller
      */
     public function store(Request $request)
     {
-        Proyecto::create($request->all());
+        $proyecto = Proyecto::create($request->all());
+        $proyecto->informacion()->create([
+            'nombre' => $request->nombre,
+            'slug' => Str::of($request->nombre)->slug("-")->trim("-"),
+            'descripcion' => $request->descripcion,
+        ]);
         return redirect()->route('proyectos.index')
             ->with('success', 'El registro fue agregado con exito.');
     }
@@ -87,6 +101,11 @@ class ProyectoController extends Controller
     public function update(Request $request, Proyecto $proyecto)
     {
         $proyecto->update($request->all());
+        $proyecto->informacion()->update([
+            'nombre' => $request->nombre,
+            'slug' => Str::of($request->nombre)->slug("-")->trim("-"),
+            'descripcion' => $request->descripcion,
+        ]);
         return redirect()->route('proyectos.index')
             ->with('success', 'El registro fue modificado con exito.');
     }
@@ -100,5 +119,11 @@ class ProyectoController extends Controller
     {
         $proyecto->delete();
         return back()->with('success', 'El registro fue elimino con exito.');
+    }
+
+    public function restore($id)
+    {
+        Proyecto::onlyTrashed()->findOrFail($id)->restore();
+        return back()->with('success', 'El registro fue agregado con exito.');
     }
 }

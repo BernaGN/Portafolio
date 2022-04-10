@@ -16,8 +16,14 @@ class Categoria extends Model implements AuditableContracts
 
     protected $with = ['informacion'];
 
+    protected $fillable = ['id'];
+
     public function informacion()
     {
-        return $this->morphOne(Informacion::class, 'informable');
+        return $this->morphOne(Informacion::class, 'informable')
+            ->withDefault([
+                'nombre' => '',
+                'descripcion' => '',
+            ]);
     }
 }

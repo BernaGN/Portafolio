@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Categoria;
+use App\Models\Informacion;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 /**
  * Class CategoriaController
@@ -16,10 +18,16 @@ class CategoriaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         return view('Catalogos.categoria.index', [
-            'categorias' => Categoria::paginate(),
+            'categorias' => Categoria::when(empty($request->buscar) == false,
+                fn($query) => $query->whereRelation('informacion', 'nombre', 'Like', '%' . $request->buscar . '%')
+            )->when($request->activo == 1, fn($query) => $query->onlyTrashed())
+                ->when($request->activo == null || $request->activo == 0, fn($query) => $query->withTrashed())
+                ->paginate(),
+            'buscar' => $request->buscar,
+            'activo' => $request->activo,
         ]);
     }
 
@@ -43,7 +51,12 @@ class CategoriaController extends Controller
      */
     public function store(Request $request)
     {
-        Categoria::create($request->except('_token'));
+        $categoria = Categoria::create($request->except('_token', 'nombre', 'slug', 'descripcion'));
+        $categoria->informacion()->create([
+            'nombre' => $request->nombre,
+            'slug' => Str::of($request->nombre)->slug("-")->trim("-"),
+            'descripcion' => $request->descripcion,
+        ]);
         return redirect()->route('categorias.index')
             ->with('success', 'El registro fue agregado con exito.');
     }
@@ -83,7 +96,12 @@ class CategoriaController extends Controller
      */
     public function update(Request $request, Categoria $categoria)
     {
-        $categoria->update($request->except('_token'));
+        $categoria->update($request->except('_token', '_method', 'nombre', 'slug', 'descripcion'));
+        $categoria->informacion()->update([
+            'nombre' => $request->nombre,
+            'slug' => Str::of($request->nombre)->slug("-")->trim("-"),
+            'descripcion' => $request->descripcion,
+        ]);
         return redirect()->route('categorias.index')
             ->with('success', 'El registro fue modificado con exito.');
     }
@@ -97,5 +115,11 @@ class CategoriaController extends Controller
     {
         $categoria->delete();
         return back()->with('success', 'El registro fue eliminado con exito.');
+    }
+
+    public function restore($id)
+    {
+        Categoria::onlyTrashed()->findOrFail($id)->restore();
+        return back()->with('success', 'El registro fue agregado con exito.');
     }
 }

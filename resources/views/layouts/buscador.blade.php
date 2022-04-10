@@ -1,12 +1,10 @@
-@if (!request()->is('obras-extras/*') and !request()->is('usuarios'))
-    <div class="input-group rounded">
-        <input type="search" class="form-control rounded" placeholder="Buscar" aria-label="Search"
-            aria-describedby="search-addon" name="buscar" value="{{ $buscar }}" required />
-        <span class="input-group-text border-0" id="search-addon">
-            <i class="fas fa-search"></i>
-        </span>
-    </div>
-@endif
+<div class="input-group rounded">
+    <input type="search" class="form-control rounded" placeholder="Buscar" aria-label="Search"
+        aria-describedby="search-addon" name="buscar" value="{{ $buscar }}" required />
+    <span class="input-group-text border-0" id="search-addon">
+        <i class="fas fa-search"></i>
+    </span>
+</div>
 <div class="form-check">
     <input class="form-check-input" type="radio" name="activo" id="exampleRadios1" value="0"
         {{ $activo == 0 ? 'checked' : '' }} onchange="submit()">

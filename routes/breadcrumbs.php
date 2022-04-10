@@ -106,7 +106,7 @@ Breadcrumbs::for('categoria.show', fn(BreadcrumbTrail $trail, Categoria $categor
 
 Breadcrumbs::for('categoria.update', fn(BreadcrumbTrail $trail, Categoria $categoria) => $trail
     ->parent('categoria.index')
-    ->push($categoria->name, route('categorias.update', $categoria))
+    ->push($categoria->id, route('categorias.update', $categoria))
 );
 
 //Catalogos/Cliente

@@ -22,7 +22,11 @@ class Proyecto extends Model implements AuditableContracts, HasMedia
 
     public function informacion()
     {
-        return $this->morphOne(Informacion::class, 'informable');
+        return $this->morphOne(Informacion::class, 'informable')
+            ->withDefault([
+                'nombre' => '',
+                'descripcion' => '',
+            ]);
     }
 
     public function cliente()

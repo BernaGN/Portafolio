@@ -18,6 +18,10 @@ class Etiqueta extends Model implements AuditableContracts
 
     public function informacion()
     {
-        return $this->morphOne(Informacion::class, 'informable');
+        return $this->morphOne(Informacion::class, 'informable')
+            ->withDefault([
+                'nombre' => '',
+                'descripcion' => '',
+            ]);
     }
 }

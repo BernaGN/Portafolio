@@ -5,7 +5,7 @@
     <section class="content container-fluid">
         <div class="row">
             <div class="col-md-12">
-                {{ Breadcrumbs::render('cliente.store') }}
+                {{ Breadcrumbs::render('categoria.store') }}
 
                 @includeif('partials.errors')
 

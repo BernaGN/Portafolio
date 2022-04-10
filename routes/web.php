@@ -25,7 +25,7 @@ use Illuminate\Support\Facades\Route;
 |
  */
 
-Route::get('/', PrincipalController::class);
+Route::get('/', PrincipalController::class)->middleware('guest');
 
 Auth::routes();
 
@@ -43,16 +43,20 @@ Route::middleware(['auth'])->group(function () {
 //Catalogos
     Route::resource('/permisos', PermisoController::class);
 
+    Route::get('/categorias-restore/{id}', [CategoriaController::class, 'restore'])->name('categorias-restore');
     Route::resource('/categorias', CategoriaController::class);
 
     Route::resource('/clientes', ClienteController::class);
 
+    Route::get('/etiquetas-restore/{id}', [EtiquetaController::class, 'restore'])->name('etiquetas-restore');
     Route::resource('/etiquetas', EtiquetaController::class);
 
     Route::resource('/habilidades', HabilidadController::class);
 
+    Route::get('/servicios-restore/{id}', [ServicioController::class, 'restore'])->name('servicios-restore');
     Route::resource('/servicios', ServicioController::class);
 
 //Procesos
+    Route::get('/proyectos-restore/{id}', [ProyectoController::class, 'restore'])->name('proyectos-restore');
     Route::resource('/proyectos', ProyectoController::class);
 });

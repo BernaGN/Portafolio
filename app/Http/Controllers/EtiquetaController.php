@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Etiqueta;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 /**
  * Class EtiquetaController
@@ -23,10 +24,16 @@ class EtiquetaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         return view('Catalogos.etiqueta.index', [
-            'etiquetas' => Etiqueta::paginate(),
+            'etiquetas' => Etiqueta::when(empty($request->buscar) == false,
+                fn($query) => $query->whereRelation('informacion', 'nombre', 'Like', '%' . $request->buscar . '%')
+            )->when($request->activo == 1, fn($query) => $query->onlyTrashed())
+                ->when($request->activo == null || $request->activo == 0, fn($query) => $query->withTrashed())
+                ->paginate(),
+            'buscar' => $request->buscar,
+            'activo' => $request->activo,
         ]);
     }
 
@@ -50,7 +57,13 @@ class EtiquetaController extends Controller
      */
     public function store(Request $request)
     {
-        Etiqueta::create($request->except('_token'));
+        $etiqueta = Etiqueta::create($request->except('_token', 'nombre', 'slug', 'descripcion'));
+        $etiqueta->informacion()->create([
+            'nombre' => $request->nombre,
+            'slug' => Str::of($request->nombre)->slug("-")->trim("-"),
+            'descripcion' => $request->descripcion,
+        ]);
+
         return redirect()->route('etiquetas.index')
             ->with('success', 'El registro fue agregado con exito.');
     }
@@ -90,7 +103,12 @@ class EtiquetaController extends Controller
      */
     public function update(Request $request, Etiqueta $etiqueta)
     {
-        $etiqueta->update($request->all());
+        $etiqueta->update($request->except('_token', '_method', 'nombre', 'slug', 'descripcion'));
+        $etiqueta->informacion()->update([
+            'nombre' => $request->nombre,
+            'slug' => Str::of($request->nombre)->slug("-")->trim("-"),
+            'descripcion' => $request->descripcion,
+        ]);
         return redirect()->route('etiquetas.index')
             ->with('success', 'El registro fue modificado con exito.');
     }
@@ -104,5 +122,11 @@ class EtiquetaController extends Controller
     {
         $etiqueta->delete();
         return back()->with('success', 'El registro fue eliminado con exito.');
+    }
+
+    public function restore($id)
+    {
+        Etiqueta::onlyTrashed()->findOrFail($id)->restore();
+        return back()->with('success', 'El registro fue agregado con exito.');
     }
 }
