@@ -8,6 +8,7 @@ use App\Http\Controllers\HabilidadController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PermisoController;
 use App\Http\Controllers\PrincipalController;
+use App\Http\Controllers\ProyectoController;
 use App\Http\Controllers\RolController;
 use App\Http\Controllers\ServicioController;
 use App\Http\Controllers\UserController;
@@ -53,4 +54,5 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('/servicios', ServicioController::class);
 
 //Procesos
+    Route::resource('/proyectos', ProyectoController::class);
 });

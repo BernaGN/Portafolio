@@ -11,6 +11,7 @@ use App\Models\Categoria;
 use App\Models\Cliente;
 use App\Models\Etiqueta;
 use App\Models\Habilidad;
+use App\Models\Proyecto;
 use App\Models\Servicio;
 use App\Models\User;
 use Diglactic\Breadcrumbs\Breadcrumbs;
@@ -195,4 +196,25 @@ Breadcrumbs::for('servicio.update', fn(BreadcrumbTrail $trail, Servicio $servici
 //Procesos
 Breadcrumbs::for('proceso', fn(BreadcrumbTrail $trail) => $trail
     ->push('Proceso')
+);
+
+//Procesos/Proyectos
+Breadcrumbs::for('proyecto.index', fn(BreadcrumbTrail $trail) => $trail
+    ->parent('proceso')
+    ->push('Proyecto', route('proyectos.index'))
+);
+
+Breadcrumbs::for('proyecto.store', fn(BreadcrumbTrail $trail) => $trail
+    ->parent('proyecto.index')
+    ->push('Agregar Proyecto')
+);
+
+Breadcrumbs::for('proyecto.show', fn(BreadcrumbTrail $trail, Proyecto $proyecto) => $trail
+    ->parent('proyecto.index')
+    ->push($proyecto->id, route('proyectos.show', $proyecto))
+);
+
+Breadcrumbs::for('proyecto.update', fn(BreadcrumbTrail $trail, Proyecto $proyecto) => $trail
+    ->parent('proyecto.index')
+    ->push($proyecto->id, route('proyectos.update', $proyecto))
 );
